@@ -1,0 +1,16 @@
+<script>
+    
+    const getTodos = async () => {
+        const response = await fetch('todo1.json');
+        if(response.status !== 200){
+            throw new Error('Cannot fetch api data.')
+        }
+        const data = await response.json();
+        return data;
+    }
+
+    getTodos()
+    .then(data => console.log(data))
+    .catch(err => console.log('Error: ', err))
+
+</script>

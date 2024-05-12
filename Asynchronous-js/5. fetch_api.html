@@ -1,0 +1,18 @@
+<p>
+    Fetch Api always resolve unless network error
+</p>
+
+<script>
+    // - In this example, the resolve is fired while we have an error with path "it should todos not todo", that because it run catch when network error
+    fetch('todos/luigi.json')
+    .then(response => {
+        console.log('Resolved: ', response);
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err => {
+        console.log('Reject', err);
+    })
+</script>

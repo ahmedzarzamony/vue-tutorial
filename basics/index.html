@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.0.2"></script>
+    <style>
+        .box{
+            padding: 108px 0;
+            width:400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        }
+        .fav{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Vue</h1>
+
+    <div id="app">
+        <!-- Lesson 1 & 2 -->
+        <h2>{{ name }} - {{ age }}</h2>
+        <button v-on:click="age++">Age +</button>
+        <button v-on:click="age--">Age -</button>
+        <div @click="name = 'Said'">Change name using @click</div>
+        <div @click="changeName1">Change name using @click and method, no invoke ()</div>
+        <div @click="changeName()">Change name using @click and method</div>
+        <div @click="changeName('gamil')">Change name using @click and methid param</div>
+
+        <h2>If Condition</h2>
+        <p>The diffrence between v-if & v-show, v-if when false it remove the element, but v-show if false it only make it invisible but it still exists on dom</p>
+        <div v-if="false">
+            Hola false
+        </div>
+        <div v-if="true">
+            Hola true
+        </div>
+        <div v-if="showBooks">
+            <h5>Book 1</h5>
+            <h5>Book 2</h5>
+            <h5>Book 3</h5>
+        </div>
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button>
+        <p v-show="showBooks">The books is appears (v-show)</p>
+
+        <hr><br>
+        <!-- lesson 3 : mouse events -->
+        <div class="box" @mouseover="handleEvent($event, 'ahmed')">mouseover (enter)</div>
+        <div class="box" @mouseleave="handleEvent">mouseleave</div>
+        <div class="box" @dblclick="handleEvent">docubleclick</div>
+        <div class="box" @mousemove="handleMoveEvent">Position X({{ x }}) - Y({{ y }})</div>
+
+        <!-- V-for -->
+        <h2>LOOOOP</h2>
+        <div>
+            {{ books[0].title }} -> {{ books[0].author }} <br>
+            <h4>using v-for</h4>
+            <ul>
+                <li v-for="book in books" :class="{ fav: book.isFav }" @click="toggleFav(book)">
+                    {{ book.title }} -> {{ book.author }}
+                    <br>
+                    <img :src="book.imgSrc" :alt="book.title">
+                </li>
+            </ul>
+        </div>
+
+        <!-- Attribute binding -->
+        <h2>Attribute binding (use eather v-bind: or just : --> exmp: v-bind:href or :href)</h2>
+        <a href="{{ url }}">Google->not working</a><br>
+        <a v-bind:href="url">Google</a><br>
+        <a :href="url">Google</a><br>
+
+        <!-- Computed properties -->
+        <h2>Computed properties</h2>
+        <ul>
+            <li v-for="book in filteredBooks" :class="{ fav: book.isFav }" @click="toggleFav(book)">
+                {{ book.title }} -> {{ book.author }}
+                <br>
+                <img :src="book.imgSrc" :alt="book.title">
+            </li>
+        </ul>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
